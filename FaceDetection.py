@@ -1,8 +1,6 @@
 import numpy as np
 import cv2
-from matplotlib import pyplot as plt
 from os import path
-
 
 def main():
     selection = selectMethod()
@@ -51,7 +49,7 @@ def findFacesInImage(front_face_cascade, profile_face_cascade):
 
 def selectMethod():
     print("Face Detection")
-    print("Press 1 to detect faces in an image or 2 to detect faces in a video")
+    print("Press 1 to detect faces in an image or 2 to detect faces in a live video")
     inp = int(input("Your selection: "))
 
     while(inp!=1 and inp!=2):
@@ -73,10 +71,10 @@ def findFaces(image, front_face_cascade, profile_face_cascade):
     #gray it
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     #Find the faxes using the model
-    front_faces = front_face_cascade.detectMultiScale(gray, 1.3, 5, 0, (64,64))
-    left_profile_faces = profile_face_cascade.detectMultiScale(gray, 1.3, 5, 0, (64,64))
+    front_faces = front_face_cascade.detectMultiScale(gray, 1.3, 4, 0, (64,64))
+    left_profile_faces = profile_face_cascade.detectMultiScale(gray, 1.3, 4, 0, (64,64))
     flipped = cv2.flip(gray, 1)
-    right_profile_faces = profile_face_cascade.detectMultiScale(flipped, 1.3, 5, 0, (64,64))
+    right_profile_faces = profile_face_cascade.detectMultiScale(flipped, 1.3, 4, 0, (64,64))
    
 
     #Front Face
